@@ -19,7 +19,7 @@ Usage: python sort_keys.py <sort|add|pop> <file> [keys]
       your source file and then resort your keys - don't worry about duplicates,
       the sorting algorithm handles them for you.
   pop: sort_keys pop <file> <keys>
-      `keys` can be any comma-delimited list of key and name (although not both!),
+      `keys` can be any comma-delimited list of keys and names (although not both!),
       i.e. `XXXXX-YYYYY-ZZZZZ, 123` would 'pop' (remove and print) the key-name pairs
       added in `add`s example. Note that this is a destructive command, 
       and that it should be used with care in order to avoid losing your keys!

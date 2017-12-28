@@ -1,7 +1,9 @@
 # steam-organisation
-A bunch of Python utilities to Make Your Life Easier™
+A bunch of Python utilities to Make Your Life Easier™.
 
-#### sort_keys.py
+Note that you will require Python 3.6+ for almost all of these, due to the use of literal string interpolation ([PEP 498](https://www.python.org/dev/peps/pep-0498/)). The files that require it will be annotated.
+
+#### sort_keys.py (3.6+)
 ##### This wonderful little thing helps you sort your spare Steam keys.
 ```
 manpage:

@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/env python3.6
 import sys
 from collections import Counter
 
@@ -124,7 +124,7 @@ if __name__ == '__main__':
         try:
             add_keys(sys.argv[2], sys.argv[3:])
         except IndexError:
-            print('Usage: sort_keys add [file] [keys]\n'
+            print(f'Usage: {sys.argv[0]} add [file] [keys]\n'
                   '\nwhere keys is a comma separated list of Steam keys'
                   '\nin the format `XXXXX-XXXXX-XXXXX name`.'
                   '\nPrepend `name` with \'DLC: \' if it is addon content.')
@@ -134,17 +134,35 @@ if __name__ == '__main__':
         try:
             x = sys.argv[2]
         except IndexError:
-            print('Usage: sort_keys sort [file]')
+            print(f'Usage: {sys.argv[0]} sort [file]')
         else:
             sort_keys(x)
     elif cmd == 'pop':
         try:
             x = (sys.argv[2], sys.argv[3:])
         except IndexError:
-            print('Usage: sort_keys pop [file] [keys]\n\n`keys` can be names or keys.')
+            print(f'Usage: {sys.argv[0]} pop [file] [keys]\n\n`keys` can be names or keys.')
         else:
             pop_keys(*x)
             print('List has been sorted.')
             sort_keys(x[0])
+    elif cmd == 'help':
+        print('\n'.join(
+            [f'sort: {sys.argv[0]} sort <file>',
+              'Exactly as it says on the tin: Sorts the keys alphabetically by game name.',
+              'Creates and writes to the files [filename]_list[.ext]',
+              'and [filename]_sorted[.ext] (yes, it preserves your file extension!)',
+              f'add: {sys.argv[0]} add <file> <keys>',
+              '`keys` must be in the format `key name, key name, key name`,',
+              'i.e. `XXXXX-YYYYY-ZZZZZ xyz, 12345-67891-01112 123`.',
+              'This will append the keys and name to the end of',
+              'your source file and then resort your keys - don\'t worry about duplicates,',
+              'the sorting algorithm handles them for you.',
+              f'pop: {sys.argv[0]} pop <file> <keys>',
+              '`keys` can be any comma-delimited list of keys and names (although not both!),',
+              'i.e. `XXXXX-YYYYY-ZZZZZ, 123` would \'pop\' (remove and print) the key-name pairs',
+              'added in `add`s example. Note that this is a destructive command,',
+              'and that it should be used with care in order to avoid losing your keys!']))
     else:
-        print('Usage: sort_keys sort|pop|add {key(s)}')
+        print(f'Usage: {sys.argv[0]} sort|add|pop {{key(s)}}'
+              f'\n{sys.argv[0]} help for more information')
